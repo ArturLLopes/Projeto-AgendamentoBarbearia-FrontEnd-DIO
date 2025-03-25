@@ -1,0 +1,101 @@
+<div class="container">
+  <!-- Formulário de agendamento -->
+  <div class="row">
+    <div class="col-12">
+      <form #form="ngForm" (ngSubmit)="onSubmit(form)" class="container">
+        <div class="row">
+          <!-- Campo de Início -->
+          <div class="col-4">
+            <mat-form-field>
+              <mat-label>Início</mat-label>
+              <input matInput [matTimepicker]="startAtPicker" [ngModelOptions]="{ updateOn: 'blur' }"
+                     name="startAt" id="startAt" #startAtModel="ngModel"
+                     (ngModelChange)="onTimeChange($event)" [(ngModel)]="newSchedule.startAt" required>
+              <mat-timepicker #startAtPicker></mat-timepicker>
+              <mat-timepicker-toggle [for]="startAtPicker" matSuffix></mat-timepicker-toggle>
+            </mat-form-field>
+          </div>
+
+          <!-- Campo de Término -->
+          <div class="col-4">
+            <mat-form-field>
+              <mat-label>Término</mat-label>
+              <input matInput [matTimepicker]="endAtPicker" [ngModelOptions]="{ updateOn: 'blur' }"
+                     name="endAt" id="endAt" #endAtModel="ngModel" [(ngModel)]="newSchedule.endAt" disabled>
+              <mat-timepicker #endAtPicker></mat-timepicker>
+              <mat-timepicker-toggle [for]="endAtPicker" matSuffix></mat-timepicker-toggle>
+            </mat-form-field>
+          </div>
+
+          <!-- Seleção de Cliente -->
+          <div class="col-3">
+            <mat-form-field>
+              <mat-label>Selecione o Cliente</mat-label>
+              <mat-select name="clientId" id="clientId" #clientIdModel="ngModel"
+                          [(ngModel)]="newSchedule.clientId" required>
+                <mat-option *ngFor="let client of clients" [value]="client.id">
+                  {{ client.name }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+
+          <!-- Botão de Submissão -->
+          <div class="col-1">
+            <button type="submit" mat-mini-fab extended matTooltip="Incluir agendamento no dia"
+                    [disabled]="form.invalid">
+              <mat-icon>add</mat-icon>
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Calendário e Tabela de Agendamentos -->
+  <div class="row">
+    <div class="col-6">
+      <mat-card class="calendar-card">
+        <mat-calendar [(selected)]="selected"></mat-calendar>
+      </mat-card>
+    </div>
+    <div class="col-6">
+      <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+        <!-- Coluna de Início -->
+        <ng-container matColumnDef="startAt">
+          <th mat-header-cell *matHeaderCellDef>Início</th>
+          <td mat-cell *matCellDef="let schedule">{{ schedule.startAt | date:'HH:mm a' }}</td>
+        </ng-container>
+
+        <!-- Coluna de Término -->
+        <ng-container matColumnDef="endAt">
+          <th mat-header-cell *matHeaderCellDef>Término</th>
+          <td mat-cell *matCellDef="let schedule">{{ schedule.endAt | date:'HH:mm a' }}</td>
+        </ng-container>
+
+        <!-- Coluna de Cliente -->
+        <ng-container matColumnDef="client">
+          <th mat-header-cell *matHeaderCellDef>Cliente</th>
+          <td mat-cell *matCellDef="let schedule">{{ schedule.clientName }}</td>
+        </ng-container>
+
+        <!-- Coluna de Ações -->
+        <ng-container matColumnDef="actions">
+          <th mat-header-cell *matHeaderCellDef>Ações</th>
+          <td mat-cell *matCellDef="let schedule">
+            <button mat-mini-fab extended matTooltip="Excluir" (click)="requestDelete(schedule)">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </td>
+        </ng-container>
+
+        <!-- Definição das Linhas da Tabela -->
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+
+      <!-- Paginador da Tabela -->
+      <mat-paginator [pageSizeOptions]="[3, 6, 9]" showFirstLastButtons></mat-paginator>
+    </div>
+  </div>
+</div>

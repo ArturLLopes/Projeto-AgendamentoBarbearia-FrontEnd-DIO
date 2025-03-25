@@ -1,0 +1,53 @@
+<form #form="ngForm" (ngSubmit)="onSubmit(form)" class="container">
+  <div class="row">
+    <div class="col-12">
+      <mat-form-field class="fil-col">
+        <mat-label>Name</mat-label>
+        <!-- Campo de entrada para o nome do cliente -->
+        <input matInput name="name" id="name" #nameModel="ngModel" [(ngModel)]="client.name" required>
+
+        <!-- Mensagem de erro exibida se o campo estiver inválido e já tiver sido tocado -->
+        @if (nameModel.hasError('required')){
+        <mat-error>Informe o nome do client</mat-error>
+        }
+      </mat-form-field>
+    </div>
+
+    <div class="row">
+      <div class="col-6">
+        <mat-form-field class="fil-col">
+          <mat-label>E-mail</mat-label>
+          <!-- Campo de entrada para o e-mail do cliente -->
+          <input matInput name="email" id="email" #emailModel="ngModel" [(ngModel)]="client.email" required email>
+
+
+          <!-- Validação para garantir que o e-mail seja válido -->
+          @if (nameModel.hasError('required') || nameModel.hasError('email')){
+          <mat-error>Informe um email válido para o cliente</mat-error>
+          }
+        </mat-form-field>
+      </div>
+
+      <div class="col-6">
+        <mat-form-field class="fil-col">
+          <mat-label>Celular</mat-label>
+          <!-- Campo de entrada para o telefone do cliente, com máscara -->
+          <input matInput name="phone" id="phone" #phoneModel="ngModel" [(ngModel)]="client.phone" required
+            mask="(00) 00000-0000">
+
+          <!-- Mensagem de erro se o telefone não for preenchido -->
+          @if (nameModel.hasError('required') || nameModel.hasError('mask')){
+          <mat-error>Informe o nome do client</mat-error>
+          }
+        </mat-form-field>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col div-button">
+        <!-- Botão de envio do formulário, desativado caso o formulário seja inválido -->
+        <button type="submit" mat-flat-button color="primary" [disabled]="form.invalid">Salvar</button>
+      </div>
+    </div>
+  </div>
+</form>
