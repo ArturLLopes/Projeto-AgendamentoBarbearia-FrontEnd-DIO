@@ -1,59 +1,27 @@
-# BarberShopUi
+# Projeto de Agendamento de Barbearia - Front-End
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.1.5.
+Este repositório contém a parte front-end do sistema de agendamento de horários para uma barbearia, desenvolvido como parte do projeto da Digital Innovation One (DIO). A aplicação permite que os clientes agendem, visualizem e gerenciem seus horários de atendimento de forma intuitiva e eficiente.
 
-## Development server
+## Tecnologias Utilizadas
 
-To start a local development server, run:
+- **Angular CLI**: Utilizado para a criação e gerenciamento do projeto front-end, garantindo uma estrutura modular e escalável.
+  
+- **TypeScript:** Linguagem de programação baseada em JavaScript que adiciona tipagem estática e recursos avançados, facilitando o desenvolvimento e a manutenção do código.​
 
-```bash
-ng serve
-```
+- **RxJS**: Biblioteca para programação reativa utilizando Observables, permitindo a composição de operações assíncronas e baseadas em eventos.​
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+- **Bootstrap**: Framework front-end que fornece componentes e estilos prontos para a construção de interfaces responsivas e modernas.​
 
-## Code scaffolding
+- **Angular Material**: Conjunto de componentes de interface de usuário baseados no Material Design, oferecendo elementos visuais consistentes e interativos.
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+## Funcionalidades
 
-```bash
-ng generate component component-name
-```
+- **Agendamento de Horários**: Permite que os clientes selecionem data e horário disponíveis para marcar seus atendimentos.
+- **Visualização de Agendamentos**: Exibe uma lista dos horários já agendados, facilitando o acompanhamento pelos clientes.
+- **Cancelamento de Agendamentos**: Oferece a opção de os clientes cancelarem seus horários previamente marcados, liberando-os para outros clientes.
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+## Integração com o Back-End
 
-```bash
-ng generate --help
-```
+Este projeto front-end está integrado a um back-end que gerencia a lógica de negócios e a persistência de dados. A comunicação entre o front-end e o back-end é realizada por meio de requisições HTTP, garantindo a troca de informações necessárias para o funcionamento completo do sistema de agendamento.
 
-## Building
 
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
